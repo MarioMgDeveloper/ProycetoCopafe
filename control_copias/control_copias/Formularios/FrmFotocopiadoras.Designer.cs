@@ -33,8 +33,6 @@
             this.txtClave = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.PanelControles = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.grdFotocopiadoras = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new FontAwesome.Sharp.IconButton();
             this.btnGuardar = new FontAwesome.Sharp.IconButton();
@@ -101,8 +99,6 @@
             // 
             // PanelControles
             // 
-            this.PanelControles.Controls.Add(this.panel2);
-            this.PanelControles.Controls.Add(this.panel1);
             this.PanelControles.Controls.Add(this.grdFotocopiadoras);
             this.PanelControles.Controls.Add(this.btnCancelar);
             this.PanelControles.Controls.Add(this.btnGuardar);
@@ -119,31 +115,15 @@
             this.PanelControles.TabIndex = 1;
             this.PanelControles.Visible = false;
             // 
-            // panel2
-            // 
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(950, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(50, 560);
-            this.panel2.TabIndex = 11;
-            // 
-            // panel1
-            // 
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(50, 560);
-            this.panel1.TabIndex = 10;
-            // 
             // grdFotocopiadoras
             // 
             this.grdFotocopiadoras.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.grdFotocopiadoras.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.grdFotocopiadoras.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdFotocopiadoras.Location = new System.Drawing.Point(56, 183);
+            this.grdFotocopiadoras.Location = new System.Drawing.Point(56, 205);
             this.grdFotocopiadoras.Name = "grdFotocopiadoras";
             this.grdFotocopiadoras.ReadOnly = true;
-            this.grdFotocopiadoras.Size = new System.Drawing.Size(888, 365);
+            this.grdFotocopiadoras.Size = new System.Drawing.Size(888, 343);
             this.grdFotocopiadoras.TabIndex = 9;
             this.grdFotocopiadoras.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdFotocopiadoras_CellDoubleClick);
             // 
@@ -158,7 +138,7 @@
             this.btnCancelar.IconColor = System.Drawing.Color.Red;
             this.btnCancelar.IconSize = 50;
             this.btnCancelar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancelar.Location = new System.Drawing.Point(563, 109);
+            this.btnCancelar.Location = new System.Drawing.Point(563, 145);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Rotation = 0D;
             this.btnCancelar.Size = new System.Drawing.Size(149, 54);
@@ -180,7 +160,7 @@
             this.btnGuardar.IconColor = System.Drawing.Color.ForestGreen;
             this.btnGuardar.IconSize = 50;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGuardar.Location = new System.Drawing.Point(378, 109);
+            this.btnGuardar.Location = new System.Drawing.Point(378, 145);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Rotation = 0D;
             this.btnGuardar.Size = new System.Drawing.Size(149, 54);
@@ -196,8 +176,11 @@
             this.txtDescripcion.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDescripcion.Location = new System.Drawing.Point(354, 77);
+            this.txtDescripcion.MaxLength = 150;
+            this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(377, 26);
+            this.txtDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescripcion.Size = new System.Drawing.Size(377, 62);
             this.txtDescripcion.TabIndex = 6;
             // 
             // label4
@@ -237,6 +220,7 @@
             this.txtNombre.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombre.Location = new System.Drawing.Point(354, 13);
+            this.txtNombre.MaxLength = 50;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(377, 26);
             this.txtNombre.TabIndex = 2;
@@ -288,8 +272,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtContador;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView grdFotocopiadoras;
     }
 }

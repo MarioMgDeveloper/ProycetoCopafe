@@ -12,7 +12,8 @@ namespace control_copias.Utilidades
     {
         public string getStringConection()
         {
-            string strPathConexion = "Data Source = " + AppDomain.CurrentDomain.BaseDirectory + "bd_copafe.db";
+            ClsUtilidadesSistema sistema = new ClsUtilidadesSistema();
+            string strPathConexion = "Data Source = " + sistema.getDirectoryArchivosConfiguracion() + "bd_copafe.db";
 
             return strPathConexion;
         }

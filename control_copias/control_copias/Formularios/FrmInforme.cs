@@ -70,6 +70,10 @@ namespace control_copias.Formularios
             row4["cod"] = "4";
             row4["nombre"] = "ESCANEOS";
 
+            DataRow row5 = data.NewRow();
+            row4["cod"] = "5";
+            row4["nombre"] = "ENCUADERNADO";
+
 
             data.Rows.Add(row1);
             data.Rows.Add(row2);
@@ -151,7 +155,7 @@ namespace control_copias.Formularios
         {
             cbxFotocopiadoras.SelectedIndex = 0;
             cbxUsuarios.SelectedIndex = 0;
-            cbxUsuarios.SelectedIndex = 0;
+            cbxRegistro.SelectedIndex = 0;
 
             FechaInicio.Value = DateTime.Now;
             FechaInicio.Value = DateTime.Now;
@@ -303,6 +307,10 @@ namespace control_copias.Formularios
 
         private void cbxFotocopiadoras_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxRegistro.Text.Equals("ENCUADERNADO"))
+            {
+                cbxFotocopiadoras.SelectedIndex = 0;
+            }
             obtenerContador();
             limpiarResultados();
         }
@@ -324,6 +332,10 @@ namespace control_copias.Formularios
 
         private void cbxRegistro_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbxRegistro.Text.Equals("ENCUADERNADO"))
+            {
+                cbxFotocopiadoras.SelectedIndex = 0;
+            }
             limpiarResultados();
         }
 

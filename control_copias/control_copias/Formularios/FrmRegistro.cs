@@ -125,6 +125,7 @@ namespace control_copias.Formularios
         }
         private void DetrminarPrecio()
         {
+            adminRbtEncuadernado();
             if (!txtCantidad.Text.Trim().Equals(""))
             {
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
@@ -162,6 +163,8 @@ namespace control_copias.Formularios
             {
                 txtPrecio.Text = "";
             }
+
+            determinaTotal();
         }
         private string GetDefectuosas()
         {
@@ -197,6 +200,10 @@ namespace control_copias.Formularios
             {
                 tipoRegistro = rbtEscaneo.Text;
             }
+            else if (rbtEncuadernado.Checked)
+            {
+                tipoRegistro = rbtEncuadernado.Text;
+            }
 
             return tipoRegistro;
         }
@@ -204,7 +211,47 @@ namespace control_copias.Formularios
         {
             bool ok = false;
 
-            if (!txtFotocopiadoraSeleccionada.Text.Equals(""))
+            if (!rbtEncuadernado.Checked)
+            {
+                if (!txtFotocopiadoraSeleccionada.Text.Equals(""))
+                {
+                    if (!txtUsuario.Text.Trim().Equals(""))
+                    {
+                        if (!txtCantidad.Text.Trim().Equals(""))
+                        {
+                            if (!txtPrecio.Text.Trim().Equals(""))
+                            {
+                                if (!rbtFotocopias.Checked && !rbtColor.Checked && !rbtByN.Checked && !rbtEscaneo.Checked)
+                                {
+                                    mensajes.MostrarAdvertencia("Seleccione un tipo de registro.");
+                                }
+                                else
+                                {
+                                    ok = true;
+                                }
+                            }
+                            else
+                            {
+                                mensajes.MostrarAdvertencia("El campo Precio, no puede quedar vacio.");
+                            }
+                        }
+                        else
+                        {
+                            mensajes.MostrarAdvertencia("El campo No. hojas (✓), no puede quedar vacio.");
+                        }
+                    }
+                    else
+                    {
+                        mensajes.MostrarAdvertencia("El campo Usuario, no puede quedar vacio..");
+                    }
+
+                }
+                else
+                {
+                    mensajes.MostrarAdvertencia("Seleccione un fotocopiadora.");
+                }
+            }
+            else
             {
                 if (!txtUsuario.Text.Trim().Equals(""))
                 {
@@ -212,35 +259,24 @@ namespace control_copias.Formularios
                     {
                         if (!txtPrecio.Text.Trim().Equals(""))
                         {
-                            if (!rbtFotocopias.Checked && !rbtColor.Checked && !rbtByN.Checked && !rbtEscaneo.Checked)
-                            {
-                                mensajes.MostrarAdvertencia("Seleccione un tipo de registro.");
-                            }
-                            else
-                            {
-                                ok = true;
-                            }
+                            ok = true;
                         }
                         else
                         {
-                            mensajes.MostrarAdvertencia("El campo Precio c/u, no puede quedar vacio.");
+                            mensajes.MostrarAdvertencia("El campo Precio, no puede quedar vacio.");
                         }
                     }
                     else
                     {
-                        mensajes.MostrarAdvertencia("El campo Cantidad, no puede quedar vacio.");
+                        mensajes.MostrarAdvertencia("El campo No. hojas (✓), no puede quedar vacio.");
                     }
                 }
                 else
                 {
                     mensajes.MostrarAdvertencia("El campo Usuario, no puede quedar vacio..");
                 }
+            }
 
-            }
-            else
-            {
-                mensajes.MostrarAdvertencia("Seleccione un fotocopiadora.");
-            }
 
             return ok;
         }
@@ -248,8 +284,8 @@ namespace control_copias.Formularios
         {
             if (validarGuardar())
             {
-                bool Confirm = mensajes.MostrarConfirmacion("Agregará un registro con la siguiente información. \n\n Impresora: " + NombreFotocopiadora + "\n Tipo registro: " + getTipoRegistro() + ".\n Cantidad: "
-                    + txtCantidad.Text + "\n Defectuosas: " + GetDefectuosas() + "\n Precio: " + txtPrecio.Text + "\n\n La información no podrá ser editada. ¿Desea continuar?");
+                bool Confirm = mensajes.MostrarConfirmacion("Agregará un registro con la siguiente información. \n\n Impresora: " + NombreFotocopiadora + "\n Tipo registro: " + getTipoRegistro() + ".\n Hojas buenas: "
+                    + txtCantidad.Text + "\n Hojas defectuosas: " + GetDefectuosas() + "\n Precio: " + txtPrecio.Text + "\n\n La información no podrá ser editada. ¿Desea continuar?");
 
                 if (Confirm)
                 {
@@ -285,6 +321,9 @@ namespace control_copias.Formularios
             rbtColor.Checked = false;
             rbtEscaneo.Checked = false;
             rbtByN.Checked = false;
+            rbtEncuadernado.Checked = false;
+
+            adminRbtEncuadernado();
 
             adminCheck();
         }
@@ -292,7 +331,15 @@ namespace control_copias.Formularios
         {
             List<string> parametros = new List<string>();
 
-            parametros.Add(CodFotocopiadora);
+            if (rbtEncuadernado.Checked)
+            {
+                parametros.Add("-1");
+            }
+            else
+            {
+                parametros.Add(CodFotocopiadora);
+            }
+           
             parametros.Add(txtUsuario.Text.Trim().ToUpper());
             string date = fecha.Value.ToString("dd/MM/yyyy");
             parametros.Add(date);
@@ -323,6 +370,10 @@ namespace control_copias.Formularios
             else if (rbtEscaneo.Checked)
             {
                 tipoRegistro = "4";
+            }
+            else if (rbtEncuadernado.Checked)
+            {
+                tipoRegistro = "5";
             }
 
             return tipoRegistro;
@@ -407,6 +458,55 @@ namespace control_copias.Formularios
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             limpiar();
+        }
+
+        private void rbtEncuadernado_CheckedChanged(object sender, EventArgs e)
+        {
+            adminRbtEncuadernado();
+        }
+
+        private void adminRbtEncuadernado()
+        {
+            bool valor = rbtEncuadernado.Checked;
+
+            btnFotocopiadora1.Enabled = !valor;
+            btnFotocopiadora2.Enabled = !valor;
+            btnFotocopiadora3.Enabled = !valor;
+            btnFotocopiadora4.Enabled = !valor;
+            btnFotocopiadora5.Enabled = !valor;
+            lblTotal.Visible = !valor;
+            txtTotal.Visible = !valor;
+
+            if (valor)
+            {
+                txtFotocopiadoraSeleccionada.Text = "";
+                txtPrecio.Text = "";
+
+            }
+
+        }
+
+        private void determinaTotal()
+        {
+            if (!txtCantidad.Equals("") && !txtPrecio.Text.Equals("") && !rbtEncuadernado.Checked)
+            {
+                int cantidad = Convert.ToInt32(txtCantidad.Text);
+                Double precio = Double.Parse(txtPrecio.Text.Replace('.', ','));
+
+                Double total = Math.Round((cantidad * precio), 2);
+
+                txtTotal.Text = total.ToString("N2");
+            }
+        }
+
+        private void txtPrecio_TextChanged(object sender, EventArgs e)
+        {
+            determinaTotal();
+        }
+
+        private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = sistema.ValidarSoloNumerosConPuntoDecimal(e);
         }
     }
 }

@@ -31,15 +31,17 @@ namespace control_copias.Querys
             strSql.Append(" (case ");
             strSql.Append("  when r.tipo_registro = 1 then 'FOTOCOPIAS' ");
             strSql.Append("  when r.tipo_registro = 2 then 'IMPRESIONES A COLOR' ");
-            strSql.Append("  when r.tipo_registro = 3 then 'IMPRESIONES BLANCO Y NEGRO' else 'ESCANEOS' end) as \"TIPO REGISTRO\",");
+            strSql.Append("  WHEN r.tipo_registro = 3 THEN 'IMPRESIONES BLANCO Y NEGRO'");
+            strSql.Append("  WHEN r.tipo_registro = 4 THEN 'ESCANEOS'");
+            strSql.Append("  WHEN r.tipo_registro = 5 THEN 'ENCUADERNADOS' END) AS [TIPO REGISTRO],");
             strSql.Append(" cast(r.fecha as text) AS \"FECHA REGISTRO\",");
-            strSql.Append(" r.cantidad_buenas AS \"CANTIDAD\",");
-            strSql.Append(" r.cantidad_malas AS \"DEFECTUOSAS\",");
-            strSql.Append(" printf(\"%.2f\",r.precio) AS \"PRECIO c/u (Q.)\",");
-            strSql.Append(" round((r.cantidad_buenas * r.precio),2) AS \"TOTAL (Q.)\"");
+            strSql.Append(" r.cantidad_buenas AS [HOJAS BUENAS],");
+            strSql.Append(" r.cantidad_malas AS [HOJAS DEFECTUOSAS],");
+            strSql.Append(" printf(\"%.2f\",r.precio) AS \"PRECIO (Q.)\",");
+            strSql.Append(" (CASE WHEN r.tipo_registro = 5 THEN  r.precio ELSE round( (r.cantidad_buenas * r.precio), 2) END) AS [TOTAL (Q.)]");
             strSql.Append(" from ");
             strSql.Append(" registro r");
-            strSql.Append(" inner join fotocopiadora f on r.cod_fotocopiadora = f.cod_fotocopiadora");
+            strSql.Append(" left join fotocopiadora f on r.cod_fotocopiadora = f.cod_fotocopiadora");
             strSql.Append(" inner join usuarios u on r.cod_usuario = u.cod_usuario");
             strSql.Append(" where");
             strSql.Append(" 1=1");
@@ -92,8 +94,8 @@ namespace control_copias.Querys
             {
                 DataRow row = data.Rows[i];
 
-                cantidad = cantidad + Convert.ToInt32(row["CANTIDAD"].ToString());
-                defectuosas = defectuosas + Convert.ToInt32(row["DEFECTUOSAS"].ToString());
+                cantidad = cantidad + Convert.ToInt32(row["HOJAS BUENAS"].ToString());
+                defectuosas = defectuosas + Convert.ToInt32(row["HOJAS DEFECTUOSAS"].ToString());
                 total = total + float.Parse(row["TOTAL (Q.)"].ToString());
             }
 
@@ -103,9 +105,9 @@ namespace control_copias.Querys
             rowAdd["USUARIO REGISTRO"] = DBNull.Value;
             rowAdd["TIPO REGISTRO"] = "TOTALES";
             rowAdd["FECHA REGISTRO"] = DBNull.Value;
-            rowAdd["CANTIDAD"] = cantidad;
-            rowAdd["DEFECTUOSAS"] = defectuosas;
-            rowAdd["PRECIO c/u (Q.)"] = DBNull.Value;
+            rowAdd["HOJAS BUENAS"] = cantidad;
+            rowAdd["HOJAS DEFECTUOSAS"] = defectuosas;
+            rowAdd["PRECIO (Q.)"] = DBNull.Value;
             rowAdd["TOTAL (Q.)"] = total;
 
             data.Rows.Add(rowAdd);
