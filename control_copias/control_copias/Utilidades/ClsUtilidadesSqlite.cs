@@ -45,6 +45,60 @@ namespace control_copias.Utilidades
                 result = ex.Message;
             }
 
+           
+            return result;
+        }
+
+        public string InsertRegistroFotocopias(string query, List<string> parametros)
+        {
+            string result = "";
+
+            try
+            {
+
+                string ok = Insert(query, parametros);
+
+                if (ok.Equals(""))
+                {
+                    string codFotocopiadora = parametros[0];
+                    DataTable data = Select("SELECT * FROM fotocopiadora f WHERE f.cod_fotocopiadora = " + codFotocopiadora);
+
+                    if (data.Rows.Count > 0)
+                    {
+                        DataRow row = data.Rows[0];
+                        string nuevoContador = (Convert.ToInt32(row["contador"].ToString()) + Convert.ToInt32(parametros[4])).ToString();
+
+                        List<string> paramUpdate = new List<string>();
+                        paramUpdate.Add(nuevoContador + ";asignar");
+                        paramUpdate.Add(codFotocopiadora + ";comparar");
+
+
+                        string updateQuery = "update fotocopiadora set contador = :parametro1 where cod_fotocopiadora = @parametro2";
+
+                        result = Update(updateQuery, paramUpdate);
+
+                        if (!result.Equals(""))
+                        {
+                            string queryMax = "select max(r.cod_registro) as cod from registro r";
+                            DataTable dataMax = Select(queryMax);
+                            DataRow rowmax = dataMax.Rows[0];
+                            string codEliminar = rowmax["cod"].ToString();
+
+                            string queryDelete = "delete from registro where cod_registro = :parametro";
+                            Delete(codEliminar, queryDelete);
+                        }
+                    }
+                }
+                else
+                {
+                    result = ok;
+                }
+            }
+            catch (Exception ex)
+            {
+                result = ex.Message;
+            }
+
             return result;
         }
         public DataTable Select(string query)

@@ -23,7 +23,7 @@ namespace control_copias.Utilidades
             }
             else if (BtnName.Equals("Registros"))
             {
-                color = Color.FromArgb(70, 111, 166);//celeste
+                color = Color.FromArgb(53, 39, 75);//morado
             }
             else if (BtnName.Equals("Informes"))
             {
@@ -51,7 +51,7 @@ namespace control_copias.Utilidades
             }
             else if (BtnName.Equals("Registros"))
             {
-                color = Color.FromArgb(60, 101, 156);//celeste
+                color = Color.FromArgb(43, 29, 65);//morado
             }
             else if (BtnName.Equals("Informes"))
             {

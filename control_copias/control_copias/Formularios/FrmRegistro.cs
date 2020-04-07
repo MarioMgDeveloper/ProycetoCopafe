@@ -30,9 +30,16 @@ namespace control_copias.Formularios
         private void FrmRegistro_Load(object sender, EventArgs e)
         {
             CargarInfoBotones();
+            CargarUsuarios();
         }
 
         #region Metodos
+        private void CargarUsuarios()
+        {
+            DataTable data = usuario.getForCbx();
+
+            sistema.LlenarCbx(ref cbxUsuario, data, "---Seleccione---");
+        }
         private void CargarInfoBotones()
         {
             DataTable data = fotocopiadora.getForButtons();
@@ -104,20 +111,20 @@ namespace control_copias.Formularios
                 default: break;
             }
         }
-        private void VerificarCodigo()
-        {
-            if (!txtUsuario.Text.Trim().Equals(""))
-            {
-                int exist = usuario.ExistCod(txtUsuario.Text.Trim().ToUpper());
+        //private void VerificarCodigo()
+        //{
+        //    if (!txtUsuario.Text.Trim().Equals(""))
+        //    {
+        //        int exist = usuario.ExistCod(txtUsuario.Text.Trim().ToUpper());
 
-                if (exist == 0)
-                {
-                    mensajes.MostrarError("El usuario ingresado no existe.");
-                    txtUsuario.Text = "";
-                    txtUsuario.Focus();
-                }
-            }
-        }
+        //        if (exist == 0)
+        //        {
+        //            mensajes.MostrarError("El usuario ingresado no existe.");
+        //            txtUsuario.Text = "";
+        //            txtUsuario.Focus();
+        //        }
+        //    }
+        //}
         private void adminCheck()
         {
             txtPrecio.Enabled = chkActPrecio.Checked;
@@ -125,7 +132,7 @@ namespace control_copias.Formularios
         }
         private void DetrminarPrecio()
         {
-            adminRbtEncuadernado();
+            adminRbtEncuadernado_Emplasticado();
             if (!txtCantidad.Text.Trim().Equals(""))
             {
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
@@ -204,6 +211,10 @@ namespace control_copias.Formularios
             {
                 tipoRegistro = rbtEncuadernado.Text;
             }
+            else if (rbtEmplasticado.Checked)
+            {
+                tipoRegistro = rbtEmplasticado.Text;
+            }
 
             return tipoRegistro;
         }
@@ -211,11 +222,11 @@ namespace control_copias.Formularios
         {
             bool ok = false;
 
-            if (!rbtEncuadernado.Checked)
+            if (!rbtEncuadernado.Checked && !rbtEmplasticado.Checked)
             {
                 if (!txtFotocopiadoraSeleccionada.Text.Equals(""))
                 {
-                    if (!txtUsuario.Text.Trim().Equals(""))
+                    if (cbxUsuario.SelectedIndex > 0)
                     {
                         if (!txtCantidad.Text.Trim().Equals(""))
                         {
@@ -242,7 +253,7 @@ namespace control_copias.Formularios
                     }
                     else
                     {
-                        mensajes.MostrarAdvertencia("El campo Usuario, no puede quedar vacio..");
+                        mensajes.MostrarAdvertencia("Seleccione un usuario.");
                     }
 
                 }
@@ -253,30 +264,22 @@ namespace control_copias.Formularios
             }
             else
             {
-                if (!txtUsuario.Text.Trim().Equals(""))
+                if (cbxUsuario.SelectedIndex > 0)
                 {
-                    if (!txtCantidad.Text.Trim().Equals(""))
+                    if (!txtPrecio.Text.Trim().Equals(""))
                     {
-                        if (!txtPrecio.Text.Trim().Equals(""))
-                        {
-                            ok = true;
-                        }
-                        else
-                        {
-                            mensajes.MostrarAdvertencia("El campo Precio, no puede quedar vacio.");
-                        }
+                        ok = true;
                     }
                     else
                     {
-                        mensajes.MostrarAdvertencia("El campo No. hojas (✓), no puede quedar vacio.");
+                        mensajes.MostrarAdvertencia("El campo Precio, no puede quedar vacio.");
                     }
                 }
                 else
                 {
-                    mensajes.MostrarAdvertencia("El campo Usuario, no puede quedar vacio..");
+                    mensajes.MostrarAdvertencia("Seleccione un usuario.");
                 }
             }
-
 
             return ok;
         }
@@ -284,7 +287,7 @@ namespace control_copias.Formularios
         {
             if (validarGuardar())
             {
-                bool Confirm = mensajes.MostrarConfirmacion("Agregará un registro con la siguiente información. \n\n Impresora: " + NombreFotocopiadora + "\n Tipo registro: " + getTipoRegistro() + ".\n Hojas buenas: "
+                bool Confirm = mensajes.MostrarConfirmacion("Agregará un registro con la siguiente información. \n\n Impresora: " + NombreFotocopiadora + "\n Usuario: " + cbxUsuario.Text + "\n Tipo registro: " + getTipoRegistro() + ".\n Hojas buenas: "
                     + txtCantidad.Text + "\n Hojas defectuosas: " + GetDefectuosas() + "\n Precio: " + txtPrecio.Text + "\n\n La información no podrá ser editada. ¿Desea continuar?");
 
                 if (Confirm)
@@ -309,7 +312,8 @@ namespace control_copias.Formularios
             CodFotocopiadora = "";
 
             txtFotocopiadoraSeleccionada.Text = "";
-            txtUsuario.Text = "";
+            //txtUsuario.Text = "";
+            cbxUsuario.SelectedIndex = 0;
             txtCantidad.Text = "";
             txtDefectuosas.Text = "";
             txtPrecio.Text = "";
@@ -322,8 +326,9 @@ namespace control_copias.Formularios
             rbtEscaneo.Checked = false;
             rbtByN.Checked = false;
             rbtEncuadernado.Checked = false;
+            rbtEmplasticado.Checked = false;
 
-            adminRbtEncuadernado();
+            adminRbtEncuadernado_Emplasticado();
 
             adminCheck();
         }
@@ -340,7 +345,7 @@ namespace control_copias.Formularios
                 parametros.Add(CodFotocopiadora);
             }
            
-            parametros.Add(txtUsuario.Text.Trim().ToUpper());
+            parametros.Add(cbxUsuario.SelectedValue.ToString());
             string date = fecha.Value.ToString("dd/MM/yyyy");
             parametros.Add(date);
             parametros.Add(getCodTipoRegistro());
@@ -375,6 +380,10 @@ namespace control_copias.Formularios
             {
                 tipoRegistro = "5";
             }
+            else if (rbtEmplasticado.Checked)
+            {
+                tipoRegistro = "6";
+            }
 
             return tipoRegistro;
         }
@@ -403,11 +412,6 @@ namespace control_copias.Formularios
         private void btnFotocopiadora5_Click(object sender, EventArgs e)
         {
             CargarInfoClickBtn(sender);
-        }
-
-        private void txtUsuario_Leave(object sender, EventArgs e)
-        {
-            VerificarCodigo();
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -462,12 +466,17 @@ namespace control_copias.Formularios
 
         private void rbtEncuadernado_CheckedChanged(object sender, EventArgs e)
         {
-            adminRbtEncuadernado();
+            adminRbtEncuadernado_Emplasticado();
         }
 
-        private void adminRbtEncuadernado()
+        private void adminRbtEncuadernado_Emplasticado()
         {
-            bool valor = rbtEncuadernado.Checked;
+            bool valor = false;
+
+            if(rbtEmplasticado.Checked || rbtEncuadernado.Checked)
+            {
+                valor = true;
+            }
 
             btnFotocopiadora1.Enabled = !valor;
             btnFotocopiadora2.Enabled = !valor;
@@ -481,17 +490,29 @@ namespace control_copias.Formularios
             {
                 txtFotocopiadoraSeleccionada.Text = "";
                 txtPrecio.Text = "";
-
             }
+
+            txtCantidad.Enabled = !rbtEmplasticado.Checked;
+            txtCantidad.ReadOnly = rbtEmplasticado.Checked;
+
+            txtDefectuosas.Enabled = !rbtEmplasticado.Checked;
+            txtDefectuosas.ReadOnly = rbtEmplasticado.Checked;
+
+            if (rbtEmplasticado.Checked)
+            {
+                txtCantidad.Text = "";
+                txtDefectuosas.Text = "";
+            }
+
 
         }
 
         private void determinaTotal()
         {
-            if (!txtCantidad.Equals("") && !txtPrecio.Text.Equals("") && !rbtEncuadernado.Checked)
+            if (!txtCantidad.Equals("") && !txtPrecio.Text.Equals("") && !rbtEncuadernado.Checked && !rbtEmplasticado.Checked)
             {
                 int cantidad = Convert.ToInt32(txtCantidad.Text);
-                Double precio = Double.Parse(txtPrecio.Text.Replace('.', ','));
+                Double precio = Double.Parse(txtPrecio.Text);
 
                 Double total = Math.Round((cantidad * precio), 2);
 
@@ -507,6 +528,11 @@ namespace control_copias.Formularios
         private void txtPrecio_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = sistema.ValidarSoloNumerosConPuntoDecimal(e);
+        }
+
+        private void rbtEmplasticado_CheckedChanged(object sender, EventArgs e)
+        {
+            adminRbtEncuadernado_Emplasticado();
         }
     }
 }

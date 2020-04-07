@@ -52,5 +52,6 @@ namespace control_copias.Querys
 
             return utilidades.Select(strQuery.ToString());
         }
+
     }
 }

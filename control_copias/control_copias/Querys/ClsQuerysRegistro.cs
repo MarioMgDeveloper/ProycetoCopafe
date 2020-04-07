@@ -19,7 +19,14 @@ namespace control_copias.Querys
             strQuery.Append(" insert into registro (cod_fotocopiadora, cod_usuario, fecha, tipo_registro, cantidad_buenas, cantidad_malas, precio, observaciones)");
             strQuery.Append(" values (@parametro1, @parametro2, @parametro3, @parametro4, @parametro5, @parametro6, @parametro7, @parametro8)");
 
-            return utilidades.Insert(strQuery.ToString(), parametros);
+            if (parametros[3].Equals("1"))
+            {
+                return utilidades.InsertRegistroFotocopias(strQuery.ToString(), parametros);
+            }
+            else
+            {
+                return utilidades.Insert(strQuery.ToString(), parametros);
+            }
         }
         public DataTable getReporte(string codFotocopiadora, string codusuario, string codTipoRegistro, string fechaInicio, string fechaFin)
         {
@@ -33,12 +40,13 @@ namespace control_copias.Querys
             strSql.Append("  when r.tipo_registro = 2 then 'IMPRESIONES A COLOR' ");
             strSql.Append("  WHEN r.tipo_registro = 3 THEN 'IMPRESIONES BLANCO Y NEGRO'");
             strSql.Append("  WHEN r.tipo_registro = 4 THEN 'ESCANEOS'");
+            strSql.Append("  WHEN r.tipo_registro = 6 THEN 'EMPLASTICADO'");
             strSql.Append("  WHEN r.tipo_registro = 5 THEN 'ENCUADERNADOS' END) AS [TIPO REGISTRO],");
             strSql.Append(" cast(r.fecha as text) AS \"FECHA REGISTRO\",");
             strSql.Append(" r.cantidad_buenas AS [HOJAS BUENAS],");
             strSql.Append(" r.cantidad_malas AS [HOJAS DEFECTUOSAS],");
             strSql.Append(" printf(\"%.2f\",r.precio) AS \"PRECIO (Q.)\",");
-            strSql.Append(" (CASE WHEN r.tipo_registro = 5 THEN  r.precio ELSE round( (r.cantidad_buenas * r.precio), 2) END) AS [TOTAL (Q.)]");
+            strSql.Append(" printf(\"%.2f\",(CASE WHEN r.tipo_registro >= 5  THEN  r.precio ELSE round( (r.cantidad_buenas * r.precio), 2) END)) AS [TOTAL (Q.)]");
             strSql.Append(" from ");
             strSql.Append(" registro r");
             strSql.Append(" left join fotocopiadora f on r.cod_fotocopiadora = f.cod_fotocopiadora");

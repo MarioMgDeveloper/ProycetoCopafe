@@ -47,6 +47,10 @@ namespace control_copias.Formularios
                     PanelControles.Visible = true;
                     CargarGrid();
                 }
+                else
+                {
+                    txtClave.Text = "";
+                }
             }
         }
 
@@ -240,9 +244,19 @@ namespace control_copias.Formularios
 
         private void grdFotocopiadoras_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            CargarModificar(e.RowIndex);
+          if(e.RowIndex > -1)
+            {
+                CargarModificar(e.RowIndex);
+            }
+         
         }
 
-        
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                ValidaClave();
+            }
+        }
     }
 }

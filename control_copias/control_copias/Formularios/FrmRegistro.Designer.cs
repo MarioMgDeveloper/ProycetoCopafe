@@ -40,7 +40,6 @@
             this.CodigoFotocopiadora5 = new System.Windows.Forms.Label();
             this.txtFotocopiadoraSeleccionada = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.fecha = new System.Windows.Forms.DateTimePicker();
             this.txtCantidad = new System.Windows.Forms.TextBox();
@@ -53,6 +52,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtObservaciones = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.rbtEmplasticado = new System.Windows.Forms.RadioButton();
             this.rbtEncuadernado = new System.Windows.Forms.RadioButton();
             this.rbtEscaneo = new System.Windows.Forms.RadioButton();
             this.rbtByN = new System.Windows.Forms.RadioButton();
@@ -69,6 +69,7 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
+            this.cbxUsuario = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -208,17 +209,6 @@
             this.label3.TabIndex = 17;
             this.label3.Text = "Usuario:";
             // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(154, 314);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.PasswordChar = '*';
-            this.txtUsuario.Size = new System.Drawing.Size(266, 26);
-            this.txtUsuario.TabIndex = 18;
-            this.txtUsuario.Leave += new System.EventHandler(this.txtUsuario_Leave);
-            // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -325,9 +315,9 @@
             this.groupBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.groupBox1.Controls.Add(this.txtObservaciones);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(665, 396);
+            this.groupBox1.Location = new System.Drawing.Point(619, 396);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(412, 104);
+            this.groupBox1.Size = new System.Drawing.Size(458, 104);
             this.groupBox1.TabIndex = 28;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Observaciónes";
@@ -339,24 +329,39 @@
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
             this.txtObservaciones.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtObservaciones.Size = new System.Drawing.Size(401, 73);
+            this.txtObservaciones.Size = new System.Drawing.Size(442, 73);
             this.txtObservaciones.TabIndex = 0;
             // 
             // groupBox2
             // 
             this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupBox2.Controls.Add(this.rbtEmplasticado);
             this.groupBox2.Controls.Add(this.rbtEncuadernado);
             this.groupBox2.Controls.Add(this.rbtEscaneo);
             this.groupBox2.Controls.Add(this.rbtByN);
             this.groupBox2.Controls.Add(this.rbtColor);
             this.groupBox2.Controls.Add(this.rbtFotocopias);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(665, 279);
+            this.groupBox2.Location = new System.Drawing.Point(619, 279);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(412, 111);
+            this.groupBox2.Size = new System.Drawing.Size(458, 111);
             this.groupBox2.TabIndex = 29;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Tipo de registro";
+            // 
+            // rbtEmplasticado
+            // 
+            this.rbtEmplasticado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.rbtEmplasticado.AutoSize = true;
+            this.rbtEmplasticado.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rbtEmplasticado.Location = new System.Drawing.Point(314, 81);
+            this.rbtEmplasticado.Name = "rbtEmplasticado";
+            this.rbtEmplasticado.Size = new System.Drawing.Size(134, 22);
+            this.rbtEmplasticado.TabIndex = 36;
+            this.rbtEmplasticado.TabStop = true;
+            this.rbtEmplasticado.Text = "Emplasticado";
+            this.rbtEmplasticado.UseVisualStyleBackColor = true;
+            this.rbtEmplasticado.CheckedChanged += new System.EventHandler(this.rbtEmplasticado_CheckedChanged);
             // 
             // rbtEncuadernado
             // 
@@ -377,7 +382,7 @@
             this.rbtEscaneo.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbtEscaneo.AutoSize = true;
             this.rbtEscaneo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtEscaneo.Location = new System.Drawing.Point(291, 53);
+            this.rbtEscaneo.Location = new System.Drawing.Point(314, 53);
             this.rbtEscaneo.Name = "rbtEscaneo";
             this.rbtEscaneo.Size = new System.Drawing.Size(105, 22);
             this.rbtEscaneo.TabIndex = 3;
@@ -419,7 +424,7 @@
             this.rbtFotocopias.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.rbtFotocopias.AutoSize = true;
             this.rbtFotocopias.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtFotocopias.Location = new System.Drawing.Point(291, 25);
+            this.rbtFotocopias.Location = new System.Drawing.Point(314, 25);
             this.rbtFotocopias.Name = "rbtFotocopias";
             this.rbtFotocopias.Size = new System.Drawing.Size(115, 22);
             this.rbtFotocopias.TabIndex = 0;
@@ -627,12 +632,23 @@
             this.iconPictureBox2.TabIndex = 35;
             this.iconPictureBox2.TabStop = false;
             // 
+            // cbxUsuario
+            // 
+            this.cbxUsuario.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cbxUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxUsuario.FormattingEnabled = true;
+            this.cbxUsuario.Location = new System.Drawing.Point(154, 317);
+            this.cbxUsuario.Name = "cbxUsuario";
+            this.cbxUsuario.Size = new System.Drawing.Size(266, 24);
+            this.cbxUsuario.TabIndex = 36;
+            // 
             // FrmRegistro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1084, 679);
+            this.Controls.Add(this.cbxUsuario);
             this.Controls.Add(this.iconPictureBox2);
             this.Controls.Add(this.iconPictureBox1);
             this.Controls.Add(this.txtTotal);
@@ -650,7 +666,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.fecha);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtFotocopiadoraSeleccionada);
             this.Controls.Add(this.CodigoFotocopiadora5);
@@ -701,7 +716,6 @@
         private System.Windows.Forms.Label CodigoFotocopiadora5;
         private System.Windows.Forms.TextBox txtFotocopiadoraSeleccionada;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtUsuario;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker fecha;
         private System.Windows.Forms.TextBox txtCantidad;
@@ -725,5 +739,7 @@
         private System.Windows.Forms.Label lblTotal;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
+        private System.Windows.Forms.RadioButton rbtEmplasticado;
+        private System.Windows.Forms.ComboBox cbxUsuario;
     }
 }

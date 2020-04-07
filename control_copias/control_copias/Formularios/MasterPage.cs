@@ -41,7 +41,7 @@ namespace control_copias.Formularios
             {
                 DesactivarBoton();
                 botonSeleccionado = (IconButton)sender;
-                botonSeleccionado.BackColor = ClsUtilidadesTema.GetColor(botonSeleccionado.Text);
+                botonSeleccionado.ForeColor = ClsUtilidadesTema.GetColor(botonSeleccionado.Text);
                 botonSeleccionado.TextAlign = ContentAlignment.MiddleCenter;
                 botonSeleccionado.TextImageRelation = TextImageRelation.TextBeforeImage;
                 botonSeleccionado.ImageAlign = ContentAlignment.MiddleRight;
@@ -79,7 +79,7 @@ namespace control_copias.Formularios
         {
             if (botonSeleccionado != null)
             {
-                botonSeleccionado.BackColor = ClsUtilidadesTema.BackColorDefault;
+                botonSeleccionado.ForeColor = ClsUtilidadesTema.ForeColorDefault;
                 botonSeleccionado.TextAlign = ContentAlignment.MiddleLeft;
                 botonSeleccionado.TextImageRelation = TextImageRelation.ImageBeforeText;
                 botonSeleccionado.ImageAlign = ContentAlignment.MiddleLeft;
@@ -178,6 +178,32 @@ namespace control_copias.Formularios
         private void MasterPage_Load(object sender, EventArgs e)
         {
             AbrirFormInicio(new Formularios.FrmInicio());
+        }
+
+        private const int cGrip = 16;
+        private const int cCaption = 32;
+
+        protected override void WndProc(ref Message m)
+        {
+            base.WndProc(ref m);
+
+            if(m.Msg == 0x84)
+            {
+                Point pos = new Point(m.LParam.ToInt32());
+
+                pos = this.PointToClient(pos);
+
+                if(pos.Y < cCaption)
+                {
+                    m.Result = (IntPtr)2;
+                    return;
+                }
+
+                if(pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip)
+                {
+                    m.Result = (IntPtr)17;
+                }
+            }
         }
     }
 }

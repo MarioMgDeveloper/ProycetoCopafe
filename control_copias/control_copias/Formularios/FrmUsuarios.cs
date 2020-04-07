@@ -33,6 +33,10 @@ namespace control_copias.Formularios
                     PanelControles.Visible = true;
                     CargarGrid();
                 }
+                else
+                {
+                    txtClave.Text = "";
+                }
             }
         }
         private string GenerarCodigo()
@@ -150,6 +154,14 @@ namespace control_copias.Formularios
         {
             limpiar();
             CargarGrid();
+        }
+
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((int)e.KeyChar == (int)Keys.Enter)
+            {
+                ValidaClave();
+            }
         }
     }
 }

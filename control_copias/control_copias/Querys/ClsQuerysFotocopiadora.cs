@@ -85,57 +85,17 @@ namespace control_copias.Querys
             string contador = "";
             StringBuilder strSql = new StringBuilder();
 
-            strSql.Append(" select");
-            strSql.Append(" f.contador,");
-            strSql.Append(" s.buenas,");
-            strSql.Append(" s.malas,");
-            strSql.Append(" sum(s.buenas + s.malas) as subTotal,");
-            strSql.Append(" sum(s.buenas + s.malas+ f.contador) as total");
+            strSql.Append(" select *");
             strSql.Append(" from fotocopiadora f");
-            strSql.Append(" inner join");
-            strSql.Append(" (select ");
-            strSql.Append("  r.cod_fotocopiadora,");
-            strSql.Append("  sum(r.cantidad_buenas) as buenas,");
-            strSql.Append(" sum(r.cantidad_malas) as malas");
-            strSql.Append(" from");
-            strSql.Append(" registro r");
-            strSql.Append(" where");
-            strSql.Append(" r.cod_fotocopiadora = " + codFotocopiadora);
-            strSql.Append(" and r.tipo_registro = 1");
-            strSql.Append(" group by r.cod_fotocopiadora");
-            strSql.Append(" ) s on f.cod_fotocopiadora = s.cod_fotocopiadora");
+            strSql.Append(" where f.cod_fotocopiadora = " + codFotocopiadora);
 
             DataTable data = utilidades.Select(strSql.ToString());
             DataRow row = data.Rows[0];
 
-            if (!row["total"].ToString().Equals(""))
-            {
-
-                contador = row["total"].ToString();
-            }
-            else
-            {
-
-                StringBuilder strSql2 = new StringBuilder();
-                strSql2.Append(" select");
-                strSql2.Append(" f.contador");
-                strSql2.Append(" from");
-                strSql2.Append(" fotocopiadora f");
-                strSql2.Append(" where");
-                strSql2.Append(" f.cod_fotocopiadora = " + codFotocopiadora);
-
-                DataTable data2 = utilidades.Select(strSql2.ToString());
-
-                DataRow row2 = data2.Rows[0];
-                contador = row2["contador"].ToString();
-            }
-
-
-
+            contador = row["contador"].ToString();
 
 
             return contador;
-
         }
     }
 }

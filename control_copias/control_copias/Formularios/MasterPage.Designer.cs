@@ -36,13 +36,13 @@
             this.PanelLogo = new System.Windows.Forms.Panel();
             this.btnHome = new FontAwesome.Sharp.IconButton();
             this.PanelTitulo = new System.Windows.Forms.Panel();
-            this.IconBtnSeleccionado = new FontAwesome.Sharp.IconPictureBox();
-            this.lblTitulo = new System.Windows.Forms.Label();
-            this.PanelSombra = new System.Windows.Forms.Panel();
-            this.PanelContenedor = new System.Windows.Forms.Panel();
             this.btnMinimizar = new FontAwesome.Sharp.IconButton();
             this.btnCerrar = new FontAwesome.Sharp.IconButton();
             this.btnMaximizar = new FontAwesome.Sharp.IconButton();
+            this.lblTitulo = new System.Windows.Forms.Label();
+            this.IconBtnSeleccionado = new FontAwesome.Sharp.IconPictureBox();
+            this.PanelSombra = new System.Windows.Forms.Panel();
+            this.PanelContenedor = new System.Windows.Forms.Panel();
             this.PanelMenu.SuspendLayout();
             this.PanelLogo.SuspendLayout();
             this.PanelTitulo.SuspendLayout();
@@ -58,9 +58,10 @@
             this.PanelMenu.Controls.Add(this.btnFotocopiadoras);
             this.PanelMenu.Controls.Add(this.PanelLogo);
             this.PanelMenu.Dock = System.Windows.Forms.DockStyle.Left;
+            this.PanelMenu.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PanelMenu.Location = new System.Drawing.Point(0, 0);
             this.PanelMenu.Name = "PanelMenu";
-            this.PanelMenu.Size = new System.Drawing.Size(220, 681);
+            this.PanelMenu.Size = new System.Drawing.Size(200, 720);
             this.PanelMenu.TabIndex = 1;
             // 
             // btnInformes
@@ -69,17 +70,17 @@
             this.btnInformes.FlatAppearance.BorderSize = 0;
             this.btnInformes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInformes.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.btnInformes.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInformes.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInformes.ForeColor = System.Drawing.Color.White;
             this.btnInformes.IconChar = FontAwesome.Sharp.IconChar.FileAlt;
             this.btnInformes.IconColor = System.Drawing.Color.White;
             this.btnInformes.IconSize = 32;
             this.btnInformes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInformes.Location = new System.Drawing.Point(0, 260);
+            this.btnInformes.Location = new System.Drawing.Point(0, 240);
             this.btnInformes.Name = "btnInformes";
             this.btnInformes.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnInformes.Rotation = 0D;
-            this.btnInformes.Size = new System.Drawing.Size(220, 60);
+            this.btnInformes.Size = new System.Drawing.Size(200, 60);
             this.btnInformes.TabIndex = 4;
             this.btnInformes.Text = "Informes";
             this.btnInformes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -93,17 +94,17 @@
             this.btnRegistros.FlatAppearance.BorderSize = 0;
             this.btnRegistros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRegistros.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.btnRegistros.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegistros.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRegistros.ForeColor = System.Drawing.Color.White;
             this.btnRegistros.IconChar = FontAwesome.Sharp.IconChar.Clipboard;
             this.btnRegistros.IconColor = System.Drawing.Color.White;
             this.btnRegistros.IconSize = 32;
             this.btnRegistros.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRegistros.Location = new System.Drawing.Point(0, 200);
+            this.btnRegistros.Location = new System.Drawing.Point(0, 180);
             this.btnRegistros.Name = "btnRegistros";
             this.btnRegistros.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnRegistros.Rotation = 0D;
-            this.btnRegistros.Size = new System.Drawing.Size(220, 60);
+            this.btnRegistros.Size = new System.Drawing.Size(200, 60);
             this.btnRegistros.TabIndex = 3;
             this.btnRegistros.Text = "Registros";
             this.btnRegistros.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,17 +118,17 @@
             this.btnUsuarios.FlatAppearance.BorderSize = 0;
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.btnUsuarios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUsuarios.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.ForeColor = System.Drawing.Color.White;
             this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.User;
             this.btnUsuarios.IconColor = System.Drawing.Color.White;
             this.btnUsuarios.IconSize = 32;
             this.btnUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUsuarios.Location = new System.Drawing.Point(0, 140);
+            this.btnUsuarios.Location = new System.Drawing.Point(0, 120);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnUsuarios.Rotation = 0D;
-            this.btnUsuarios.Size = new System.Drawing.Size(220, 60);
+            this.btnUsuarios.Size = new System.Drawing.Size(200, 60);
             this.btnUsuarios.TabIndex = 2;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -141,17 +142,17 @@
             this.btnFotocopiadoras.FlatAppearance.BorderSize = 0;
             this.btnFotocopiadoras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFotocopiadoras.Flip = FontAwesome.Sharp.FlipOrientation.Normal;
-            this.btnFotocopiadoras.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFotocopiadoras.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFotocopiadoras.ForeColor = System.Drawing.Color.White;
             this.btnFotocopiadoras.IconChar = FontAwesome.Sharp.IconChar.Print;
             this.btnFotocopiadoras.IconColor = System.Drawing.Color.White;
             this.btnFotocopiadoras.IconSize = 32;
             this.btnFotocopiadoras.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnFotocopiadoras.Location = new System.Drawing.Point(0, 80);
+            this.btnFotocopiadoras.Location = new System.Drawing.Point(0, 60);
             this.btnFotocopiadoras.Name = "btnFotocopiadoras";
             this.btnFotocopiadoras.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnFotocopiadoras.Rotation = 0D;
-            this.btnFotocopiadoras.Size = new System.Drawing.Size(220, 60);
+            this.btnFotocopiadoras.Size = new System.Drawing.Size(200, 60);
             this.btnFotocopiadoras.TabIndex = 1;
             this.btnFotocopiadoras.Text = "Fotocopiadoras";
             this.btnFotocopiadoras.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,7 +167,7 @@
             this.PanelLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.PanelLogo.Location = new System.Drawing.Point(0, 0);
             this.PanelLogo.Name = "PanelLogo";
-            this.PanelLogo.Size = new System.Drawing.Size(220, 80);
+            this.PanelLogo.Size = new System.Drawing.Size(200, 60);
             this.PanelLogo.TabIndex = 0;
             // 
             // btnHome
@@ -179,12 +180,12 @@
             this.btnHome.ForeColor = System.Drawing.Color.White;
             this.btnHome.IconChar = FontAwesome.Sharp.IconChar.Home;
             this.btnHome.IconColor = System.Drawing.Color.White;
-            this.btnHome.IconSize = 70;
+            this.btnHome.IconSize = 60;
             this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHome.Location = new System.Drawing.Point(0, 0);
             this.btnHome.Name = "btnHome";
             this.btnHome.Rotation = 0D;
-            this.btnHome.Size = new System.Drawing.Size(220, 80);
+            this.btnHome.Size = new System.Drawing.Size(200, 60);
             this.btnHome.TabIndex = 0;
             this.btnHome.Text = "Inicio";
             this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -200,51 +201,11 @@
             this.PanelTitulo.Controls.Add(this.lblTitulo);
             this.PanelTitulo.Controls.Add(this.IconBtnSeleccionado);
             this.PanelTitulo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelTitulo.Location = new System.Drawing.Point(220, 0);
+            this.PanelTitulo.Location = new System.Drawing.Point(200, 0);
             this.PanelTitulo.Name = "PanelTitulo";
-            this.PanelTitulo.Size = new System.Drawing.Size(1014, 80);
+            this.PanelTitulo.Size = new System.Drawing.Size(1050, 60);
             this.PanelTitulo.TabIndex = 2;
             this.PanelTitulo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitulo_MouseDown);
-            // 
-            // IconBtnSeleccionado
-            // 
-            this.IconBtnSeleccionado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(135)))), ((int)(((byte)(57)))));
-            this.IconBtnSeleccionado.IconChar = FontAwesome.Sharp.IconChar.Home;
-            this.IconBtnSeleccionado.IconColor = System.Drawing.Color.White;
-            this.IconBtnSeleccionado.Location = new System.Drawing.Point(6, 24);
-            this.IconBtnSeleccionado.Name = "IconBtnSeleccionado";
-            this.IconBtnSeleccionado.Size = new System.Drawing.Size(32, 32);
-            this.IconBtnSeleccionado.TabIndex = 0;
-            this.IconBtnSeleccionado.TabStop = false;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(45, 32);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(51, 18);
-            this.lblTitulo.TabIndex = 1;
-            this.lblTitulo.Text = "Inicio";
-            // 
-            // PanelSombra
-            // 
-            this.PanelSombra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(125)))), ((int)(((byte)(47)))));
-            this.PanelSombra.Dock = System.Windows.Forms.DockStyle.Top;
-            this.PanelSombra.Location = new System.Drawing.Point(220, 80);
-            this.PanelSombra.Name = "PanelSombra";
-            this.PanelSombra.Size = new System.Drawing.Size(1014, 10);
-            this.PanelSombra.TabIndex = 3;
-            this.PanelSombra.Visible = false;
-            // 
-            // PanelContenedor
-            // 
-            this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContenedor.Location = new System.Drawing.Point(220, 90);
-            this.PanelContenedor.Name = "PanelContenedor";
-            this.PanelContenedor.Size = new System.Drawing.Size(1014, 591);
-            this.PanelContenedor.TabIndex = 4;
             // 
             // btnMinimizar
             // 
@@ -255,7 +216,7 @@
             this.btnMinimizar.IconChar = FontAwesome.Sharp.IconChar.MinusCircle;
             this.btnMinimizar.IconColor = System.Drawing.Color.White;
             this.btnMinimizar.IconSize = 20;
-            this.btnMinimizar.Location = new System.Drawing.Point(913, 3);
+            this.btnMinimizar.Location = new System.Drawing.Point(949, 3);
             this.btnMinimizar.Name = "btnMinimizar";
             this.btnMinimizar.Rotation = 0D;
             this.btnMinimizar.Size = new System.Drawing.Size(33, 26);
@@ -272,7 +233,7 @@
             this.btnCerrar.IconChar = FontAwesome.Sharp.IconChar.TimesCircle;
             this.btnCerrar.IconColor = System.Drawing.Color.White;
             this.btnCerrar.IconSize = 20;
-            this.btnCerrar.Location = new System.Drawing.Point(981, 3);
+            this.btnCerrar.Location = new System.Drawing.Point(1017, 3);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Rotation = 0D;
             this.btnCerrar.Size = new System.Drawing.Size(33, 26);
@@ -289,7 +250,7 @@
             this.btnMaximizar.IconChar = FontAwesome.Sharp.IconChar.Circle;
             this.btnMaximizar.IconColor = System.Drawing.Color.White;
             this.btnMaximizar.IconSize = 20;
-            this.btnMaximizar.Location = new System.Drawing.Point(947, 3);
+            this.btnMaximizar.Location = new System.Drawing.Point(983, 3);
             this.btnMaximizar.Name = "btnMaximizar";
             this.btnMaximizar.Rotation = 0D;
             this.btnMaximizar.Size = new System.Drawing.Size(33, 26);
@@ -297,19 +258,64 @@
             this.btnMaximizar.UseVisualStyleBackColor = true;
             this.btnMaximizar.Click += new System.EventHandler(this.btnMaximizar_Click);
             // 
+            // lblTitulo
+            // 
+            this.lblTitulo.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(520, 26);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(48, 17);
+            this.lblTitulo.TabIndex = 1;
+            this.lblTitulo.Text = "Inicio";
+            // 
+            // IconBtnSeleccionado
+            // 
+            this.IconBtnSeleccionado.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.IconBtnSeleccionado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(135)))), ((int)(((byte)(57)))));
+            this.IconBtnSeleccionado.IconChar = FontAwesome.Sharp.IconChar.Home;
+            this.IconBtnSeleccionado.IconColor = System.Drawing.Color.White;
+            this.IconBtnSeleccionado.Location = new System.Drawing.Point(481, 18);
+            this.IconBtnSeleccionado.Name = "IconBtnSeleccionado";
+            this.IconBtnSeleccionado.Size = new System.Drawing.Size(32, 32);
+            this.IconBtnSeleccionado.TabIndex = 0;
+            this.IconBtnSeleccionado.TabStop = false;
+            // 
+            // PanelSombra
+            // 
+            this.PanelSombra.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(125)))), ((int)(((byte)(47)))));
+            this.PanelSombra.Dock = System.Windows.Forms.DockStyle.Top;
+            this.PanelSombra.Location = new System.Drawing.Point(200, 60);
+            this.PanelSombra.Name = "PanelSombra";
+            this.PanelSombra.Size = new System.Drawing.Size(1050, 10);
+            this.PanelSombra.TabIndex = 3;
+            this.PanelSombra.Visible = false;
+            // 
+            // PanelContenedor
+            // 
+            this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PanelContenedor.Location = new System.Drawing.Point(200, 70);
+            this.PanelContenedor.Name = "PanelContenedor";
+            this.PanelContenedor.Size = new System.Drawing.Size(1050, 650);
+            this.PanelContenedor.TabIndex = 5;
+            // 
             // MasterPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1234, 681);
+            this.ClientSize = new System.Drawing.Size(1250, 720);
             this.Controls.Add(this.PanelContenedor);
             this.Controls.Add(this.PanelSombra);
             this.Controls.Add(this.PanelTitulo);
             this.Controls.Add(this.PanelMenu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MinimumSize = new System.Drawing.Size(1250, 720);
             this.Name = "MasterPage";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MasterPage";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.MasterPage_Load);
             this.PanelMenu.ResumeLayout(false);
             this.PanelLogo.ResumeLayout(false);
@@ -333,9 +339,9 @@
         private System.Windows.Forms.Label lblTitulo;
         private FontAwesome.Sharp.IconPictureBox IconBtnSeleccionado;
         private System.Windows.Forms.Panel PanelSombra;
-        private System.Windows.Forms.Panel PanelContenedor;
         private FontAwesome.Sharp.IconButton btnMinimizar;
         private FontAwesome.Sharp.IconButton btnCerrar;
         private FontAwesome.Sharp.IconButton btnMaximizar;
+        private System.Windows.Forms.Panel PanelContenedor;
     }
 }

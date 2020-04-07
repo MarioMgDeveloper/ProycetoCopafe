@@ -35,9 +35,18 @@ namespace control_copias.Formularios
             cargarFotocopiadoras();
             cargarUsuarios();
             cargarTipoRegistro();
+
+
         }
 
         #region Metodos
+        private void DeshabilitarOrdenar()
+        {
+            foreach (DataGridViewColumn Col in grdResultados.Columns)
+            {
+                Col.SortMode = DataGridViewColumnSortMode.NotSortable;
+            }
+        }
         private void cargarFotocopiadoras()
         {
             DataTable data = fotocopiadoras.getForCbx();
@@ -71,14 +80,20 @@ namespace control_copias.Formularios
             row4["nombre"] = "ESCANEOS";
 
             DataRow row5 = data.NewRow();
-            row4["cod"] = "5";
-            row4["nombre"] = "ENCUADERNADO";
+            row5["cod"] = "5";
+            row5["nombre"] = "ENCUADERNADO";
+
+            DataRow row6 = data.NewRow();
+            row6["cod"] = "6";
+            row6["nombre"] = "EMPLASTICADO";
 
 
             data.Rows.Add(row1);
             data.Rows.Add(row2);
             data.Rows.Add(row3);
             data.Rows.Add(row4);
+            data.Rows.Add(row5);
+            data.Rows.Add(row6);
 
             utilidades.LlenarCbx(ref cbxRegistro, data, "---TODOS---");
 
@@ -178,14 +193,15 @@ namespace control_copias.Formularios
         private void buscar()
         {
             grdResultados.DataSource = getData();
+            DeshabilitarOrdenar();
 
             colorearTotales();
         }
         private void colorearTotales()
         {
-            if (grdResultados.Rows.Count > 1)
+            if (grdResultados.Rows.Count > 0)
             {
-                int indice = grdResultados.Rows.Count - 2;
+                int indice = grdResultados.Rows.Count - 1;
                 grdResultados.Rows[indice].DefaultCellStyle.BackColor = ClsUtilidadesTema.ColorFilaTotales;
             }
         }
@@ -281,14 +297,14 @@ namespace control_copias.Formularios
 
         private void Exportar()
         {
-            if(grdResultados.Rows.Count > 1)
+            if(grdResultados.Rows.Count > 0)
             {
                 DataTable data = getData();
                 excel.ExportarRpExcel(ref data, getDefinicionReporte());
             }
             else
             {
-                mensajes.MostrarAdvertencia("Debe realizar una búsqueda para esportar los datos.");
+                mensajes.MostrarAdvertencia("Realice una búsqueda que genere resultados.");
             }
         }
         #endregion
@@ -307,7 +323,7 @@ namespace control_copias.Formularios
 
         private void cbxFotocopiadoras_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxRegistro.Text.Equals("ENCUADERNADO"))
+            if (cbxRegistro.Text.Equals("ENCUADERNADO") || cbxRegistro.Text.Equals("EMPLASTICADO"))
             {
                 cbxFotocopiadoras.SelectedIndex = 0;
             }
@@ -332,7 +348,7 @@ namespace control_copias.Formularios
 
         private void cbxRegistro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbxRegistro.Text.Equals("ENCUADERNADO"))
+            if (cbxRegistro.Text.Equals("ENCUADERNADO") || cbxRegistro.Text.Equals("EMPLASTICADO"))
             {
                 cbxFotocopiadoras.SelectedIndex = 0;
             }
